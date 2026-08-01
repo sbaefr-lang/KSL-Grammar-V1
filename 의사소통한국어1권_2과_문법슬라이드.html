@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>의사소통 한국어 1권 2과 문법을 배워요</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600;700;800&family=Jua&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF6EC;
+    --card:#FFFFFF;
+    --ink:#2B2A28;
+    --sub:#7A756B;
+    --teal:#F2780C;
+    --teal-dark:#C85F02;
+    --teal-tint:#FFE9D6;
+    --coral:#FF9142;
+    --coral-tint:#FFEFE0;
+    --mustard:#FFB648;
+    --mustard-tint:#FFF3DE;
+    --red:#E11D2E;
+    --line:#E9E2D3;
+    --shadow: 0 6px 0 rgba(43,42,40,0.08);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 8% 12%, rgba(242,120,12,0.07), transparent 40%),
+      radial-gradient(circle at 92% 85%, rgba(255,145,66,0.09), transparent 40%),
+      var(--paper);
+    font-family:'Gothic A1', sans-serif;
+    font-weight:500;
+    color:var(--ink);
+    min-height:100vh;
+    padding:16px 16px 60px;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .wrap{max-width:900px; margin:0 auto;}
+
+  header{display:flex; align-items:center; gap:10px; margin-bottom:14px;}
+  .logo{
+    width:32px; height:32px; border-radius:10px; background:var(--teal);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: var(--shadow); flex-shrink:0;
+  }
+  .logo svg{width:17px; height:17px;}
+  header h1{font-family:'Gothic A1', sans-serif; font-weight:700; font-size:15px; margin:0; letter-spacing:0.2px; white-space:nowrap;}
+  header p{margin:2px 0 0; color:var(--sub); font-size:13px;}
+
+  .top-tabs{display:flex; gap:0; margin-bottom:16px; border-radius:16px; overflow:hidden; box-shadow:var(--shadow);}
+  .top-tab{
+    flex:1; background:var(--teal); color:#fff;
+    padding:14px 6px 12px; text-align:center; cursor:pointer;
+    transition:background .15s ease, color .15s ease;
+    user-select:none; border-right:1px solid rgba(255,255,255,0.25);
+  }
+  .top-tab:last-child{border-right:none;}
+  .top-tab .circle-num{font-family:'Jua', sans-serif; font-size:13px; margin-right:3px;}
+  .top-tab .name{font-weight:700; font-size:14px; font-family:'Jua', sans-serif;}
+  .top-tab:hover{background:var(--teal-dark);}
+  .top-tab.active{background:var(--mustard-tint); color:var(--teal-dark);}
+
+  .step-tabs{display:flex; flex-wrap:wrap; gap:7px; margin-bottom:18px;}
+  .step-tab{
+    padding:7px 13px; border-radius:999px; background:var(--card);
+    border:1.5px solid var(--line); font-size:12.5px; font-weight:500; color:var(--sub);
+    cursor:pointer; white-space:nowrap; transition:all .15s ease;
+  }
+  .step-tab.active{background:var(--ink); color:#fff; border-color:var(--ink);}
+
+  .card{
+    background:var(--card); border-radius:22px; padding:30px 26px 26px;
+    box-shadow: var(--shadow); border:1px solid var(--line); min-height:340px;
+    animation: fadeIn .25s ease;
+  }
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  .card h2{
+    font-family:'Gothic A1', sans-serif; font-weight:700; font-size:15px; color:var(--teal-dark);
+    margin:0 0 14px; display:flex; align-items:center; gap:8px;
+  }
+  .card h2::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--coral); display:inline-block;}
+
+  /* illustration */
+  .illust{display:flex; justify-content:center; margin-bottom:14px;}
+  .illust svg{width:120px; height:76px;}
+
+  /* dialogue */
+  .dialogue{display:flex; flex-direction:column; gap:12px; padding:6px 4px 6px;}
+  .bubble{max-width:78%; padding:12px 16px; border-radius:18px; font-size:16px; font-weight:500; line-height:1.5; position:relative;}
+  .bubble.a{align-self:flex-start; background:#DDEFFC; border-bottom-left-radius:4px; color:var(--ink);}
+  .bubble.b{align-self:flex-end; background:var(--coral-tint); border-bottom-right-radius:4px; color:var(--ink);}
+  .bubble .who{display:block; font-size:11px; font-weight:700; opacity:0.6; margin-bottom:3px;}
+  .gram-hl{background:#FFE066; color:var(--ink); font-weight:800; padding:1px 5px; border-radius:5px; font-family:'Jua', sans-serif;}
+  .findbar{
+    display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:center;
+    margin-top:16px; border:2px solid var(--teal); border-radius:999px;
+    padding:14px 20px; font-size:14.5px; font-weight:700; color:var(--ink);
+  }
+
+  .grammar-title{
+    font-family:'Jua', sans-serif; font-size:24px; color:var(--ink);
+    background:var(--mustard-tint); display:inline-block; padding:8px 20px;
+    border-radius:14px; margin-bottom:16px; letter-spacing:0.3px;
+  }
+  .meaning-lead{font-size:15px; line-height:1.7; color:var(--ink); margin-bottom:16px;}
+  .meaning-box{
+    border:1.5px solid var(--line); border-radius:16px; padding:16px 18px;
+    background:#FFFDF8; margin-bottom:12px;
+  }
+  .meaning-box .tag{
+    font-size:12px; font-weight:700; color:var(--teal-dark);
+    background:var(--teal-tint); display:inline-block; padding:3px 10px;
+    border-radius:999px; margin-bottom:8px;
+  }
+  .meaning-box .sent{font-size:15.5px; font-weight:600; margin-bottom:4px;}
+  .meaning-box .sent b{color:var(--coral); font-weight:800;}
+  .meaning-box .desc{font-size:13px; color:var(--sub);}
+  .summary-bar{
+    margin-top:14px; text-align:center; background:var(--mustard-tint);
+    border-radius:14px; padding:14px 16px; font-weight:700; font-size:14.5px;
+  }
+
+  /* form table */
+  .hint-bar{
+    background:var(--teal-tint); color:var(--teal-dark); font-size:13px; font-weight:600;
+    padding:10px 14px; border-radius:12px; margin-bottom:14px;
+  }
+  table.form-table{width:100%; border-collapse:collapse; margin-bottom:14px; font-size:14px;}
+  .table-scroll{width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; margin-bottom:14px;}
+  .table-scroll table{margin-bottom:0; min-width:420px;}
+  table.form-table th{
+    background:var(--mustard); color:#fff; padding:10px; text-align:center; font-size:13px;
+  }
+  table.form-table td{padding:10px; text-align:center; border-bottom:1px solid var(--line);}
+  table.form-table td:nth-child(2){color:var(--ink); font-weight:800; font-family:'Jua', sans-serif; letter-spacing:0.3px;}
+  table.form-table tr:last-child td{border-bottom:none;}
+  .ex-red{color:var(--red); font-weight:800;}
+  .warn-box{
+    border:1.5px dashed var(--line); border-radius:14px; padding:12px 16px;
+    font-size:13px; color:var(--ink); background:#FFFDF8;
+  }
+  .warn-box b{color:var(--red);}
+
+  .examples{display:flex; flex-direction:column; gap:8px;}
+  .example{font-size:15px; padding:10px 14px; background:var(--teal-tint); border-radius:10px; color:var(--teal-dark); font-weight:500;}
+  .example b{color:var(--coral); font-weight:800;}
+
+  .example-box{background:var(--teal-tint); border-radius:14px; padding:14px 18px; margin-bottom:18px; font-size:14px;}
+  .example-box .tag2{
+    font-family:'Gothic A1', sans-serif; font-weight:700; font-size:12px; color:var(--teal-dark);
+    background:#fff; display:inline-block; padding:2px 10px; border-radius:999px; margin-bottom:8px;
+  }
+  .example-box .line{margin:4px 0; line-height:1.6;}
+
+  .q-list{display:flex; flex-direction:column; gap:10px;}
+  .q-item{border:1.5px solid var(--line); border-radius:14px; padding:12px 16px;}
+  .q-row{display:flex; justify-content:space-between; align-items:center; width:100%; gap:12px; flex-wrap:wrap;}
+  .q-word{font-weight:700; font-size:14.5px;}
+  .reveal-btn{
+    border:none; background:var(--teal); color:#fff; font-weight:700; font-size:13px;
+    padding:8px 15px; border-radius:999px; cursor:pointer; transition:background .15s ease, transform .1s ease; flex-shrink:0;
+  }
+  .reveal-btn:hover{background:var(--teal-dark);}
+  .reveal-btn:active{transform:scale(0.96);}
+  .answer{
+    display:none; width:100%; margin-top:8px; padding:9px 14px; background:var(--coral-tint);
+    color:#B8461F; border-radius:10px; font-weight:600; font-size:13.5px;
+  }
+  .answer.show{display:block; animation: fadeIn .2s ease;}
+
+  .retry-wrap{margin-top:16px; text-align:center;}
+  .retry-btn{
+    border:2px solid var(--ink); background:transparent; color:var(--ink); font-weight:700;
+    font-size:13px; padding:9px 20px; border-radius:999px; cursor:pointer; transition:all .15s ease;
+  }
+  .retry-btn:hover{background:var(--ink); color:#fff;}
+
+  .caution-list{display:flex; flex-direction:column; gap:10px;}
+  .caution-item{
+    display:flex; gap:10px; align-items:flex-start; background:#FFFDF8;
+    border:1.5px solid var(--line); border-radius:14px; padding:12px 16px; font-size:14px; line-height:1.6;
+  }
+  .caution-item .mark{color:var(--coral); font-weight:900; flex-shrink:0;}
+
+  .compare-title{
+    font-family:'Gothic A1', sans-serif; font-weight:700; font-size:18px; color:var(--teal-dark); margin-bottom:12px;
+  }
+  .compare-cols{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px;}
+  .compare-col{border-radius:14px; padding:14px 16px; font-size:13.5px; line-height:1.6;}
+  .compare-col.left{background:var(--teal-tint); color:var(--teal-dark);}
+  .compare-col.right{background:var(--coral-tint); color:#B8461F;}
+  .compare-col b{display:block; font-family:'Jua', sans-serif; font-size:15px; margin-bottom:6px;}
+  .compare-points{display:flex; flex-direction:column; gap:8px;}
+  .compare-point{font-size:13.5px; background:#FFFDF8; border:1px solid var(--line); border-radius:10px; padding:9px 13px;}
+  .no-compare{text-align:center; padding:40px 20px; color:var(--sub); font-size:14px;}
+
+  .wrap-up{text-align:center; padding:36px 20px; background:var(--mustard-tint); border-radius:16px;}
+  .wrap-up .icon{font-size:30px; margin-bottom:10px;}
+  .wrap-up p{font-size:18px; font-weight:700; color:var(--ink); margin:0; line-height:1.6;}
+  .wrap-up span{display:block; margin-top:10px; font-size:13px; font-weight:400; color:var(--sub);}
+
+  .nav-footer{display:flex; justify-content:space-between; align-items:center; margin-top:16px;}
+  .nav-btn{
+    border:none; background:var(--card); border:1.5px solid var(--line); color:var(--ink);
+    font-weight:700; font-size:13px; padding:10px 18px; border-radius:999px; cursor:pointer;
+    display:flex; align-items:center; gap:6px; transition:all .15s ease;
+  }
+  .nav-btn:hover{border-color:var(--ink);}
+  .nav-btn:disabled{opacity:0.3; cursor:default;}
+  .nav-btn:disabled:hover{border-color:var(--line);}
+  .progress-label{font-size:12px; color:var(--sub); font-weight:600;}
+
+  @media (max-width:600px){
+    html{-webkit-text-size-adjust:100%;}
+    body{padding:10px 8px 40px;}
+    header h1{font-size:13px;}
+    header p{font-size:12px;}
+
+    .top-tabs{
+      flex-wrap:nowrap;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+    }
+    .top-tabs::-webkit-scrollbar{display:none;}
+    .top-tab{
+      flex:0 0 auto;
+      min-width:120px;
+      border-right:1px solid rgba(255,255,255,0.25);
+      border-bottom:none;
+      font-size:13px;
+      padding:12px 12px 10px;
+    }
+
+    .step-tabs{
+      flex-wrap:nowrap;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+      padding-bottom:4px;
+    }
+    .step-tabs::-webkit-scrollbar{display:none;}
+    .step-tab{flex:0 0 auto; font-size:12.5px; padding:9px 14px;}
+
+    .card{padding:22px 16px 20px;}
+    .grammar-title{font-size:21px;}
+    .bubble{max-width:88%; font-size:14.5px; padding:11px 14px;}
+    .findbar{font-size:14px; padding:12px 14px;}
+
+    .meaning-box .sent{font-size:15px;}
+    .compare-cols{grid-template-columns:1fr;}
+
+    table.form-table{font-size:13px;}
+    table.form-table th, table.form-table td{padding:8px 6px;}
+
+    .q-item{padding:12px 14px;}
+    .q-row{flex-direction:column; align-items:stretch; gap:10px;}
+    .reveal-btn{width:100%; text-align:center; padding:12px; font-size:14px;}
+    .answer{font-size:14px;}
+    .example-box{padding:14px;}
+
+    .retry-btn{width:100%; padding:12px;}
+
+    .caution-item{font-size:14.5px; padding:12px 14px;}
+
+    .nav-footer{flex-wrap:wrap; gap:8px;}
+    .nav-btn{flex:1 1 auto; min-height:46px; font-size:14px; padding:12px 14px; justify-content:center;}
+    .progress-label{order:3; width:100%; text-align:center; font-size:11.5px;}
+  }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 11L12 4L21 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M5 10V19C5 19.5523 5.44772 20 6 20H18C18.5523 20 19 19.5523 19 19V10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h1>의사소통 한국어 1권 2과 문법을 배워요</h1>
+  </header>
+
+  <div class="top-tabs" id="topTabs">
+    <div class="top-tab active" data-g="1"><span class="circle-num">①</span><span class="name">N-이/가 있어요</span></div>
+    <div class="top-tab" data-g="2"><span class="circle-num">②</span><span class="name">N-에 있어요</span></div>
+    <div class="top-tab" data-g="3"><span class="circle-num">③</span><span class="name">N-하고</span></div>
+    <div class="top-tab" data-g="4"><span class="circle-num">④</span><span class="name">N-의</span></div>
+  </div>
+
+  <div class="step-tabs" id="stepTabs"></div>
+
+  <div class="card" id="card"></div>
+
+  <div class="nav-footer">
+    <button class="nav-btn" id="prevBtn">← 이전</button>
+    <span class="progress-label" id="progressLabel"></span>
+    <button class="nav-btn" id="nextBtn">다음 →</button>
+  </div>
+
+</div>
+
+<script>
+const STEPS = ["상황 도입","의미","형태","형태 연습","문장 연습","사용 시 주의점","비교 문법"];
+
+/* 대화 장면을 표현하는 간단한 삽화 (두 사람) */
+function peopleSVG(colorA, colorB){
+  return `<svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="14" y="66" width="34" height="6" rx="3" fill="#D8CDB8"/>
+    <rect x="24" y="40" width="16" height="26" rx="6" fill="${colorA}"/>
+    <circle cx="32" cy="30" r="11" fill="#2B2A28" opacity="0.85"/>
+    <rect x="112" y="66" width="34" height="6" rx="3" fill="#D8CDB8"/>
+    <rect x="120" y="40" width="16" height="26" rx="6" fill="${colorB}"/>
+    <circle cx="128" cy="30" r="11" fill="#2B2A28" opacity="0.85"/>
+    <path d="M50 34 Q80 10 110 34" stroke="#E9E2D3" stroke-width="2" fill="none" stroke-dasharray="3 4"/>
+  </svg>`;
+}
+/* 위치(장소) 삽화 */
+function locationSVG(){
+  return `<svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="30" y="55" width="100" height="34" rx="6" fill="#E2F4F1" stroke="#2F9E93" stroke-width="2"/>
+    <rect x="50" y="30" width="26" height="25" rx="4" fill="#FFE7DF" stroke="#FF7A59" stroke-width="2"/>
+    <path d="M80 10 L138 46" stroke="#F0B429" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="80" cy="10" r="5" fill="#F0B429"/>
+    <text x="86" y="8" font-size="11" fill="#7A756B" font-family="sans-serif">어디에?</text>
+  </svg>`;
+}
+/* 연결(하고) 삽화 */
+function linkSVG(){
+  return `<svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="20" y="35" width="46" height="34" rx="8" fill="#E2F4F1" stroke="#2F9E93" stroke-width="2"/>
+    <rect x="94" y="35" width="46" height="34" rx="8" fill="#FFE7DF" stroke="#FF7A59" stroke-width="2"/>
+    <circle cx="80" cy="52" r="13" fill="#F0B429"/>
+    <text x="80" y="57" font-size="12" fill="#fff" font-family="sans-serif" text-anchor="middle" font-weight="bold">하고</text>
+  </svg>`;
+}
+/* 소유(의) 삽화 */
+function ownSVG(){
+  return `<svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="40" cy="34" r="14" fill="#2B2A28" opacity="0.85"/>
+    <rect x="26" y="50" width="28" height="26" rx="8" fill="#2F9E93"/>
+    <path d="M64 60 Q88 50 108 62" stroke="#F0B429" stroke-width="2.5" fill="none"/>
+    <rect x="104" y="56" width="34" height="24" rx="5" fill="#FFE7DF" stroke="#FF7A59" stroke-width="2"/>
+    <text x="70" y="46" font-size="11" fill="#7A756B" font-family="sans-serif">의</text>
+  </svg>`;
+}
+
+const DATA = {
+  1:{
+    title:"N-이/가 있어(요)/없어(요)",
+    shortLabel:"N-이/가 있어요/없어요",
+    illust: peopleSVG("#2F9E93","#FF7A59"),
+    dialogue:[
+      {who:"가",side:"a",text:"지우개<span class=\"gram-hl\">가 있어</span>?"},
+      {who:"나",side:"b",text:"아니, <span class=\"gram-hl\">없어</span>."}
+    ],
+    meaningLead:"사람이나 사물이 존재하거나 존재하지 않음을 나타내는 표현이에요.",
+    meaningBoxes:[
+      {tag:"교재 예문", sent:"가방<b>이</b> 있어요.", desc:"가방(사물)이 있다는 뜻이에요."},
+      {tag:"일상 예문", sent:"오늘 숙제<b>가</b> 없어요.", desc:"숙제가 존재하지 않는다는 뜻이에요."}
+    ],
+    summary:"명사 뒤에 '이/가'를 붙여서 있다/없다를 말해요.",
+    formTable:{
+      head:["받침","형태","예시"],
+      rows:[["받침 O","N-이 있어요/없어요","책 → 책<span class=\"ex-red\">이</span> 있어요"],["받침 X","N-가 있어요/없어요","의자 → 의자<span class=\"ex-red\">가</span> 있어요"]]
+    },
+    formWarn:"받침이 있으면 <b>이</b>, 받침이 없으면 <b>가</b>를 써요!",
+    formPractice:[
+      {word:"가방", answer:"가방이"},
+      {word:"지우개", answer:"지우개가"},
+      {word:"책상", answer:"책상이"},
+      {word:"의자", answer:"의자가"},
+      {word:"우산", answer:"우산이"}
+    ],
+    practiceExample:{tag:"보기", lines:["가: 연필이 있어요? (연필)","나: 아니요, 없어요."]},
+    sentencePractice:[
+      {word:"책상", answer:"책상이 있어요? / 아니요, 없어요."},
+      {word:"시계", answer:"시계가 있어요? / 아니요, 없어요."},
+      {word:"필통", answer:"필통이 있어요? / 아니요, 없어요."},
+      {word:"안경", answer:"안경이 있어요? / 아니요, 없어요."},
+      {word:"신발", answer:"신발이 있어요? / 아니요, 없어요."}
+    ],
+    cautions:[
+      "받침이 있으면 '이', 없으면 '가'를 써요.",
+      "반말에서는 '이/가'를 생략하기도 해요. (예: 지우개 있어?)",
+      "'없어요'의 반말은 '없어'예요."
+    ],
+    compare:{
+      title:"이/가 있어요 vs 에 있어요",
+      left:{name:"이/가 있어요", desc:"무엇이 있는지/없는지(존재)를 말해요."},
+      right:{name:"에 있어요", desc:"어디에 있는지(위치)를 말해요."},
+      points:["가방이 있어요. → 가방의 존재를 말해요.","가방이 책상 위에 있어요. → 가방의 위치를 말해요."]
+    }
+  },
+  2:{
+    title:"N-에 있어(요)/없어(요)",
+    shortLabel:"N-에 있어요/없어요",
+    illust: locationSVG(),
+    dialogue:[
+      {who:"가",side:"a",text:"엄마, 체육복이 어디<span class=\"gram-hl\">에 있어요</span>?"},
+      {who:"나",side:"b",text:"옷장 안<span class=\"gram-hl\">에 있어</span>."}
+    ],
+    meaningLead:"사람이나 사물이 있는 장소나 위치를 나타내는 표현이에요.",
+    meaningBoxes:[
+      {tag:"교재 예문", sent:"수호가 교실<b>에</b> 있어요.", desc:"수호가 있는 장소는 교실이에요."},
+      {tag:"일상 예문", sent:"강아지가 소파 아래<b>에</b> 있어요.", desc:"강아지의 위치를 알려줘요."}
+    ],
+    summary:"장소를 나타내는 말 뒤에 '에'를 붙여요.",
+    formTable:{
+      head:["받침","형태","예시"],
+      rows:[["관계없음","N-에 있어요/없어요","교실 → 교실<span class=\"ex-red\">에</span> 있어요"]]
+    },
+    formWarn:"받침이 있어도 없어도 항상 <b>에</b>를 그대로 써요!",
+    formPractice:[
+      {word:"책상 위", answer:"책상 위에"},
+      {word:"가방 안", answer:"가방 안에"},
+      {word:"사물함", answer:"사물함에"},
+      {word:"창문 옆", answer:"창문 옆에"},
+      {word:"침대 아래", answer:"침대 아래에"}
+    ],
+    practiceExample:{tag:"보기", lines:["가: 연필이 어디에 있어요? (연필)","나: 책상 위에 있어요. (책상 위)"]},
+    sentencePractice:[
+      {word:"우산, 의자 아래", answer:"우산이 어디에 있어요? / 의자 아래에 있어요."},
+      {word:"교과서, 사물함 안", answer:"교과서가 어디에 있어요? / 사물함 안에 있어요."},
+      {word:"시계, 책상 위", answer:"시계가 어디에 있어요? / 책상 위에 있어요."},
+      {word:"지우개, 필통 안", answer:"지우개가 어디에 있어요? / 필통 안에 있어요."},
+      {word:"컴퓨터, 교실", answer:"컴퓨터가 어디에 있어요? / 교실에 있어요."}
+    ],
+    cautions:[
+      "위/아래/안/밖/옆처럼 위치를 나타내는 말과 자주 같이 써요.",
+      "'이/가 있어요'(존재)와 헷갈리지 않도록 주의하세요.",
+      "사람이 있는 장소를 물을 때도 똑같이 써요. (예: 선생님이 교무실에 있어요.)"
+    ],
+    compare:{
+      title:"에 있어요 vs 에서",
+      left:{name:"에 있어요", desc:"사람/사물이 있는 장소 (있어요/없어요와 함께)."},
+      right:{name:"에서", desc:"어떤 행동이 일어나는 장소 (동사와 함께)."},
+      points:["교실에 있어요. → 존재하는 장소를 말해요.","교실에서 공부해요. → 행동이 일어나는 장소를 말해요."]
+    }
+  },
+  3:{
+    title:"N-하고",
+    shortLabel:"N-하고",
+    illust: linkSVG(),
+    dialogue:[
+      {who:"가",side:"a",text:"사물함 안에 뭐가 있어?"},
+      {who:"나",side:"b",text:"공책<span class=\"gram-hl\">하고</span> 교과서가 있어."}
+    ],
+    meaningLead:"앞과 뒤의 명사를 같은 자격으로 이어 주는 조사예요.",
+    meaningBoxes:[
+      {tag:"교재 예문", sent:"언니<b>하고</b> 동생이에요.", desc:"언니와 동생 두 사람을 같이 말해요."},
+      {tag:"일상 예문", sent:"우유<b>하고</b> 빵을 먹었어요.", desc:"우유와 빵 두 가지를 같이 말해요."}
+    ],
+    summary:"명사와 명사를 '하고'로 연결해요.",
+    formTable:{
+      head:["받침","형태","예시"],
+      rows:[["관계없음","N-하고","책 + 연필 → 책<span class=\"ex-red\">하고</span> 연필"]]
+    },
+    formWarn:"받침이 있어도 없어도 항상 <b>하고</b>를 그대로 써요!",
+    formPractice:[
+      {word:"책상 · 의자", answer:"책상하고 의자"},
+      {word:"우산 · 가방", answer:"우산하고 가방"},
+      {word:"연필 · 지우개", answer:"연필하고 지우개"},
+      {word:"컵 · 접시", answer:"컵하고 접시"},
+      {word:"창문 · 문", answer:"창문하고 문"}
+    ],
+    practiceExample:{tag:"보기", lines:["가: 교실에 뭐가 있어요?","나: 책상하고 의자가 있어요. (책상, 의자)"]},
+    sentencePractice:[
+      {word:"칠판, 사물함", answer:"칠판하고 사물함이 있어요."},
+      {word:"텔레비전, 컴퓨터", answer:"텔레비전하고 컴퓨터가 있어요."},
+      {word:"책, 공책", answer:"책하고 공책이 있어요."},
+      {word:"의자, 탁자", answer:"의자하고 탁자가 있어요."},
+      {word:"시계, 달력", answer:"시계하고 달력이 있어요."}
+    ],
+    cautions:[
+      "'하고'는 주로 말할 때(구어체) 사용해요.",
+      "받침 유무와 상관없이 항상 '하고'를 그대로 써요.",
+      "사람과 함께한다는 뜻으로도 쓰여요. (예: 친구하고 놀아요.)"
+    ],
+    compare:{
+      title:"하고 vs 와/과",
+      left:{name:"하고", desc:"구어체(말할 때) — 받침 관계없이 그대로 사용."},
+      right:{name:"와/과", desc:"문어체(글 쓸 때) — 받침 있으면 '과', 없으면 '와'."},
+      points:["책상하고 의자예요. (말할 때)","책상과 의자입니다. (글을 쓸 때)"]
+    }
+  },
+  4:{
+    title:"의",
+    shortLabel:"의",
+    illust: ownSVG(),
+    dialogue:[
+      {who:"가",side:"a",text:"누구<span class=\"gram-hl\">의</span> 가방이야?"},
+      {who:"나",side:"b",text:"수호<span class=\"gram-hl\">의</span> 가방이야."}
+    ],
+    meaningLead:"앞의 말이 뒤의 말에 대하여 소유, 소속, 소재나 관계를 나타내는 조사예요.",
+    meaningBoxes:[
+      {tag:"교재 예문", sent:"친구<b>의</b> 책상이에요.", desc:"책상은 친구의 것이에요."},
+      {tag:"일상 예문", sent:"이건 저<b>의</b> 우산이에요.", desc:"우산은 저의 것이에요."}
+    ],
+    summary:"명사와 명사 사이에 '의'를 넣어서 소유를 나타내요.",
+    formTable:{
+      head:["받침","형태","예시"],
+      rows:[["관계없음","N-의","선생님 + 책 → 선생님<span class=\"ex-red\">의</span> 책"]]
+    },
+    formWarn:"받침이 있어도 없어도 항상 <b>의</b>를 그대로 써요!",
+    formPractice:[
+      {word:"친구 · 가방", answer:"친구의 가방"},
+      {word:"선생님 · 책", answer:"선생님의 책"},
+      {word:"동생 · 신발", answer:"동생의 신발"},
+      {word:"학교 · 운동장", answer:"학교의 운동장"},
+      {word:"엄마 · 요리", answer:"엄마의 요리"}
+    ],
+    practiceExample:{tag:"보기", lines:["가: 이것은 누구의 공책이에요? (공책)","나: 수호의 공책이에요. (수호)"]},
+    sentencePractice:[
+      {word:"휴대 전화, 영수", answer:"영수의 휴대 전화예요."},
+      {word:"컴퓨터, 선생님", answer:"선생님의 컴퓨터예요."},
+      {word:"가방, 수호", answer:"수호의 가방이에요."},
+      {word:"책, 지민", answer:"지민의 책이에요."},
+      {word:"우산, 언니", answer:"언니의 우산이에요."}
+    ],
+    cautions:[
+      "말할 때는 '의'를 자주 생략해요. (예: 친구 책상이에요.)",
+      "받침 유무와 상관없이 형태가 바뀌지 않아요.",
+      "사람 이름이나 사람을 나타내는 말 뒤에 자주 사용해요."
+    ],
+    compare:{
+      title:"의 → 내/제 (줄임말)",
+      left:{name:"나의 → 내", desc:"'나의'는 보통 '내'로 줄여서 써요."},
+      right:{name:"저의 → 제", desc:"'저의'는 보통 '제'로 줄여서 써요."},
+      points:["나의 책 → 내 책","저의 가방 → 제 가방","다른 명사 뒤의 '의'는 그대로 쓰거나 생략해요."]
+    }
+  }
+};
+
+let currentG = 1;
+let currentStep = 0;
+
+function renderStepTabs(){
+  const el = document.getElementById("stepTabs");
+  el.innerHTML = "";
+  STEPS.forEach((s,i)=>{
+    const d = document.createElement("div");
+    d.className = "step-tab" + (i===currentStep ? " active":"");
+    d.textContent = (i+1)+". "+s;
+    d.onclick = ()=>{ currentStep = i; render(); };
+    el.appendChild(d);
+    if(i===currentStep){
+      requestAnimationFrame(()=> d.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}));
+    }
+  });
+}
+
+function qItemsHTML(list){
+  let html = `<div class="q-list">`;
+  list.forEach((q,i)=>{
+    html += `
+      <div class="q-item">
+        <div class="q-row">
+          <span class="q-word">(${i+1}) ${q.word}</span>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+        </div>
+        <div class="answer">${q.answer}</div>
+      </div>`;
+  });
+  html += `</div>
+    <div class="retry-wrap"><button class="retry-btn" onclick="resetAnswers()">다시 풀기</button></div>`;
+  return html;
+}
+
+function renderCard(){
+  const g = DATA[currentG];
+  const card = document.getElementById("card");
+  let html = "";
+
+  if(currentStep===0){
+    html += `<h2>상황 도입</h2>
+      <div class="illust">${g.illust}</div>
+      <div class="dialogue">`;
+    g.dialogue.forEach(d=>{
+      html += `<div class="bubble ${d.side}"><span class="who">${d.who}</span>${d.text}</div>`;
+    });
+    html += `</div>
+      <div class="findbar">💡 <span class="gram-hl">${g.shortLabel}</span>가 어디에 쓰였는지 찾아보세요!</div>`;
+
+  } else if(currentStep===1){
+    html += `<h2>의미</h2>
+      <div class="grammar-title">${g.title}</div>
+      <div class="meaning-lead">${g.meaningLead}</div>`;
+    g.meaningBoxes.forEach(b=>{
+      html += `<div class="meaning-box">
+        <span class="tag">${b.tag}</span>
+        <div class="sent">${b.sent}</div>
+        <div class="desc">→ ${b.desc}</div>
+      </div>`;
+    });
+    html += `<div class="summary-bar">✅ ${g.summary}</div>`;
+
+  } else if(currentStep===2){
+    html += `<h2>형태</h2>
+      <div class="table-scroll">
+      <table class="form-table">
+        <tr>${g.formTable.head.map(h=>`<th>${h}</th>`).join("")}</tr>
+        ${g.formTable.rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}
+      </table>
+      </div>
+      <div class="warn-box">⚠️ ${g.formWarn}</div>`;
+
+  } else if(currentStep===3){
+    html += `<h2>형태 연습</h2>
+      <div class="hint-bar">💡 단어를 클릭하면 답이 나타나요.</div>
+      ${qItemsHTML(g.formPractice)}`;
+
+  } else if(currentStep===4){
+    html += `<h2>문장 연습</h2>
+      <div class="example-box">
+        <span class="tag2">${g.practiceExample.tag}</span>
+        ${g.practiceExample.lines.map(l=>`<div class="line">${l}</div>`).join("")}
+      </div>
+      ${qItemsHTML(g.sentencePractice)}`;
+
+  } else if(currentStep===5){
+    html += `<h2>사용 시 주의점</h2><div class="caution-list">`;
+    g.cautions.forEach(c=>{
+      html += `<div class="caution-item"><span class="mark">⚠️</span><span>${c}</span></div>`;
+    });
+    html += `</div>`;
+
+  } else if(currentStep===6){
+    if(g.compare){
+      html += `<h2>비교 문법</h2>
+        <div class="compare-title">${g.compare.title}</div>
+        <div class="compare-cols">
+          <div class="compare-col left"><b>${g.compare.left.name}</b>${g.compare.left.desc}</div>
+          <div class="compare-col right"><b>${g.compare.right.name}</b>${g.compare.right.desc}</div>
+        </div>
+        <div class="compare-points">
+          ${g.compare.points.map(p=>`<div class="compare-point">${p}</div>`).join("")}
+        </div>`;
+    } else {
+      html += `<h2>비교 문법</h2><div class="no-compare">이 문법에는 비교할 문법이 없어요.</div>`;
+    }
+  }
+
+  card.innerHTML = html;
+}
+
+function toggleAnswer(btn){
+  const item = btn.closest(".q-item");
+  const ans = item.querySelector(".answer");
+  ans.classList.toggle("show");
+}
+function resetAnswers(){
+  document.querySelectorAll(".answer.show").forEach(a=>a.classList.remove("show"));
+}
+
+function renderTopTabs(){
+  document.querySelectorAll(".top-tab").forEach(t=>{
+    const isActive = Number(t.dataset.g)===currentG;
+    t.classList.toggle("active", isActive);
+    if(isActive){
+      requestAnimationFrame(()=> t.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}));
+    }
+  });
+}
+
+function renderNav(){
+  const isFirstOfAll = (currentStep===0 && currentG===1);
+  const isLastOfAll = (currentStep===STEPS.length-1 && currentG===4);
+  document.getElementById("prevBtn").disabled = isFirstOfAll;
+  document.getElementById("prevBtn").textContent = (currentStep===0 && currentG>1) ? "← 이전 문법" : "← 이전";
+  document.getElementById("nextBtn").disabled = isLastOfAll;
+  document.getElementById("nextBtn").textContent = (currentStep===STEPS.length-1 && currentG<4) ? "다음 문법 →" : "다음 →";
+  document.getElementById("progressLabel").textContent = `문법 ${currentG} · ${currentStep+1}/${STEPS.length}`;
+}
+
+function render(){
+  renderTopTabs();
+  renderStepTabs();
+  renderCard();
+  renderNav();
+}
+
+document.querySelectorAll(".top-tab").forEach(t=>{
+  t.addEventListener("click", ()=>{
+    currentG = Number(t.dataset.g);
+    currentStep = 0;
+    render();
+  });
+});
+
+document.getElementById("prevBtn").addEventListener("click", ()=>{
+  if(currentStep>0){
+    currentStep--;
+  } else if(currentG>1){
+    currentG--; currentStep=STEPS.length-1;
+  }
+  render();
+});
+document.getElementById("nextBtn").addEventListener("click", ()=>{
+  if(currentStep<STEPS.length-1){
+    currentStep++;
+  } else if(currentG<4){
+    currentG++; currentStep=0;
+  }
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
